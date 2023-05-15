@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="pt-2" style="width: 571px">
     <b-autocomplete
       v-model="name"
       ref="autocomplete"
@@ -8,8 +8,9 @@
       :open-on-focus="openOnFocus"
       placeholder="Find movie"
       @select="(option) => (selected = option)"
-      @select-header="showAddFruit"
+      @select-header="showTerm"
       :selectable-header="selectable"
+      class="search-header"
     >
       <template #empty>No results for {{ name }}</template>
     </b-autocomplete>
@@ -48,15 +49,14 @@ export default {
     },
   },
   methods: {
-    showAddFruit() {
+    showTerm() {
       this.$buefy.dialog.prompt({
-        message: `Fruit`,
+        message: `Movie`,
         inputAttrs: {
-          placeholder: "e.g. Watermelon",
+          placeholder: "e.g. Wonder Women",
           maxlength: 20,
           value: this.name,
         },
-        confirmText: "Add",
         onConfirm: (value) => {
           this.data.push(value);
           this.$refs.autocomplete.setSelected(value);
@@ -66,3 +66,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.taginput .taginput-container.is-focusable, .textarea, .input {
+  background: rgba(0, 0, 0, 0.13);
+  border-radius: 4px;
+}
+</style>

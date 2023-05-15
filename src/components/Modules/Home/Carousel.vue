@@ -12,18 +12,22 @@
       :key="img"
       @click="updateIndexOnClick(i)"
     >
-      <img :src="img" />
+      <SliderCardComponent></SliderCardComponent>
     </div>
   </VueSlickCarousel>
 </template>
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+import SliderCardComponent from "@/components/Card/SliderCard.vue";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
 
 export default {
   name: "CarouselComponent",
-  components: { VueSlickCarousel },
+  components: {
+    VueSlickCarousel,
+    SliderCardComponent
+  },
   data() {
     return {
       slides: [
@@ -67,8 +71,6 @@ export default {
 .carousel {
   width: 100%;
   padding: 10px;
-}
-.carousel .work img {
-  margin: 10px;
+  background: rgba(0, 0, 0, 0.29);
 }
 </style>

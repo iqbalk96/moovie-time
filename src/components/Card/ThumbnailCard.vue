@@ -12,13 +12,12 @@
         />
       </div>
     </div>
-    <h5>{{ name }}</h5>
-    <p>{{ year }}</p>
+    <h5 class="thumbnail-title">{{ name }}</h5>
+    <p class="thumbnail-year">{{ year }}</p>
   </section>
 </template>
 
 <script>
-
 export default {
   name: "ThumbnailCardComponent",
   data() {
@@ -63,5 +62,15 @@ export default {
   border-radius: 0px;
   width: 100%;
   object-fit: cover;
+}
+
+.thumbnail-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #e5e5e5;
+}
+
+.thumbnail-year {
+    color: #929292;
 }
 </style>
