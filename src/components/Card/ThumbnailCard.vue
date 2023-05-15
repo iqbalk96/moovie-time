@@ -5,13 +5,11 @@
         <b-tag class="tag-rating-thumbnail" type="is-dark">
           {{ rating }}
         </b-tag>
-        <b-image
-          src="https://picsum.photos/600/400"
+        <img
+          :src="require(`@/assets/movie/${thumbnail}`)"
           :alt="name"
-          ratio="6by4"
-          :rounded="rounded"
           class="card-moovie"
-        ></b-image>
+        />
       </div>
     </div>
     <h5>{{ name }}</h5>
@@ -20,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   name: "ThumbnailCardComponent",
   data() {
@@ -35,6 +34,9 @@ export default {
       default: "",
     },
     rating: {
+      default: "",
+    },
+    thumbnail: {
       default: "",
     },
   },
@@ -59,5 +61,7 @@ export default {
 .card-moovie {
   height: 330px;
   border-radius: 0px;
+  width: 100%;
+  object-fit: cover;
 }
 </style>

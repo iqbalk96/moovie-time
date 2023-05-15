@@ -1,60 +1,74 @@
 <template>
-  <section>
-    <b-carousel
-      v-model="carousel"
-      :animated="animated"
-      :has-drag="drag"
-      :autoplay="autoPlay"
-      :pause-hover="pauseHover"
-      :pause-info="pauseInfo"
-      :pause-info-type="pauseType"
-      :interval="interval"
-      :repeat="repeat"
-      @change="info($event)"
+  <VueSlickCarousel
+    v-bind="settings"
+    v-if="slides.length"
+    ref="carousel"
+    class="carousel"
+    @beforeChange="updateIndexOnDrag"
+  >
+    <div
+      class="work"
+      v-for="(img, i) in slides"
+      :key="img"
+      @click="updateIndexOnClick(i)"
     >
-      <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-        <section :class="`hero is-medium is-${carousel.color} is-bold`">
-          <div class="hero-body has-text-centered">
-            <h1 class="title">{{ carousel.title }}</h1>
-          </div>
-        </section>
-      </b-carousel-item>
-    </b-carousel>
-  </section>
+      <img :src="img" />
+    </div>
+  </VueSlickCarousel>
 </template>
 
 <script>
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+
 export default {
   name: "CarouselComponent",
+  components: { VueSlickCarousel },
   data() {
     return {
-      carousel: 0,
-      animated: "fade",
-      drag: false,
-      autoPlay: false,
-      pauseHover: false,
-      pauseInfo: false,
-      repeat: false,
-      pauseType: "is-primary",
-      interval: 3000,
-      carousels: [
-        { title: "Slide 1", color: "dark" },
-        { title: "Slide 2", color: "primary" },
-        { title: "Slide 3", color: "info" },
-        { title: "Slide 4", color: "success" },
-        { title: "Slide 5", color: "warning" },
-        { title: "Slide 6", color: "danger" },
+      slides: [
+        "https://loremflickr.com/320/240?random=1",
+        "https://loremflickr.com/320/240?random=2",
+        "https://loremflickr.com/320/240?random=3",
+        "https://loremflickr.com/320/240?random=4",
+        "https://loremflickr.com/320/240?random=5",
       ],
+      currentSlide: 0,
+      settings: {
+        arrows: false,
+        infinite: true,
+        variableWidth: true,
+        draggable: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        centerMode: true,
+      },
     };
   },
+  watch: {
+    currentSlide(newValue, oldValue) {
+      console.log("oldValue", oldValue);
+      this.$refs.carousel.goTo(newValue);
+    },
+  },
   methods: {
-    info(value) {
-      this.carousel = value;
-      this.$buefy.toast.open({
-        message: `This Slide ${value} !`,
-        type: "is-info",
-      });
+    updateIndexOnClick(slideIndex) {
+      this.currentSlide = slideIndex;
+    },
+    updateIndexOnDrag(oldSlideIndex, newSlideIndex) {
+      console.log("oldSlideIndex", oldSlideIndex);
+      this.currentSlide = newSlideIndex;
     },
   },
 };
 </script>
+
+<style>
+.carousel {
+  width: 100%;
+  padding: 10px;
+}
+.carousel .work img {
+  margin: 10px;
+}
+</style>
