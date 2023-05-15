@@ -11,14 +11,14 @@
       </template>
 
       <template #end>
-        <b-navbar-dropdown label="CATEGORIES">
-          <b-navbar-item href="#" v-for="(category, i) in categories" :key="i">
+        <b-navbar-dropdown label="CATEGORIES" class="has-text-weight-bold">
+          <b-navbar-item href="#" v-for="(category, i) in categories" :key="i" class="has-text-weight-bold">
             {{ category }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-item> MOVIES </b-navbar-item>
-        <b-navbar-item> TV SHOWS </b-navbar-item>
-        <b-navbar-item> LOGIN </b-navbar-item>
+        <b-navbar-item class="has-text-weight-bold"> MOVIES </b-navbar-item>
+        <b-navbar-item class="has-text-weight-bold"> TV SHOWS </b-navbar-item>
+        <b-navbar-item class="has-text-weight-bold"> LOGIN </b-navbar-item>
       </template>
     </b-navbar>
   </div>
@@ -33,19 +33,19 @@ export default {
   data() {
     return {
       categories: [
-        'ACTION',
-        'ADVENTURE',
-        'ANIMATION',
-        'COMEDY',
-        'CRIME',
-        'DOCUMENTARY',
-        'DRAMA',
-        'FAMILY',
-        'FANTASY',
-        'HISTORY',
-        'HORROR'
-      ]
-    }
-  }
+        "ACTION",
+        "ADVENTURE",
+        "ANIMATION",
+        "COMEDY",
+        "CRIME",
+        "DOCUMENTARY",
+        "DRAMA",
+        "FAMILY",
+        "FANTASY",
+        "HISTORY",
+        "HORROR",
+      ],
+    };
+  },
 };
 </script>

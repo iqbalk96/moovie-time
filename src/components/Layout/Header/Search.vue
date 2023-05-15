@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-2" style="width: 571px">
+  <section class="pt-2 autocomplete-width">
     <b-autocomplete
       v-model="name"
       ref="autocomplete"
@@ -68,8 +68,19 @@ export default {
 </script>
 
 <style>
-.taginput .taginput-container.is-focusable, .textarea, .input {
-  background: rgba(0, 0, 0, 0.13);
-  border-radius: 4px;
+.autocomplete-width {
+  width: 571px;
 }
+
+.search-header input {
+  background: rgba(0, 0, 0, 0.13);
+  border-color: rgba(0, 0, 0, 0.13);
+  color: #e5e5e5;
+}
+
+.search-header input::placeholder {
+    opacity: 0.5;
+    color: #e5e5e5;
+}
+
 </style>

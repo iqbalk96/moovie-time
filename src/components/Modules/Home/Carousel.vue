@@ -9,10 +9,10 @@
     <div
       class="work"
       v-for="(img, i) in slides"
-      :key="img"
+      :key="img.image"
       @click="updateIndexOnClick(i)"
     >
-      <SliderCardComponent></SliderCardComponent>
+      <SliderCardComponent :image="img.image" :rating="img.rating" :title="img.title"></SliderCardComponent>
     </div>
   </VueSlickCarousel>
 </template>
@@ -26,16 +26,16 @@ export default {
   name: "CarouselComponent",
   components: {
     VueSlickCarousel,
-    SliderCardComponent
+    SliderCardComponent,
   },
   data() {
     return {
       slides: [
-        "https://loremflickr.com/320/240?random=1",
-        "https://loremflickr.com/320/240?random=2",
-        "https://loremflickr.com/320/240?random=3",
-        "https://loremflickr.com/320/240?random=4",
-        "https://loremflickr.com/320/240?random=5",
+        { image: "the-croods.png", rating: "8.2", title: 'The Croods' },
+        { image: "the-new-mutants.png", rating: "7.2", title: 'The New Mutants' },
+        { image: "project-owner.png", rating: "6.2", title: 'Project Owner' },
+        { image: "soul.png", rating: "7.3", title: 'Soul' },
+        { image: "space-sweeper.png", rating: "8.5", title: 'Space Sweepers' },
       ],
       currentSlide: 0,
       settings: {
