@@ -1,41 +1,25 @@
 <template>
-  <div class="home">
+  <div class="movies">
     <div>
-      <CarouselComponent></CarouselComponent>
+      <!-- <CarouselComponent></CarouselComponent> -->
     </div>
     <div>
-      <div class="is-flex is-align-items-center is-justify-content-center discover-base">
-        <div class="container" style="margin-top: -80px;">
+      <div
+        class="is-flex is-align-items-center is-justify-content-center discover-base"
+      >
+        <div class="container" style="margin-top: -80px">
           <div class="columns mb-6">
             <div class="column pt-5">
-              <Title title="Discover Movies"></Title>
-            </div>
-            <div class="column has-text-right">
-              <b-button
-                rounded
-                label="Popularity"
-                type="is-danger"
-                class="mr-5"
-              />
-              <b-dropdown aria-role="list">
-                <template #trigger="">
-                  <b-button rounded label="Release Date" />
-                </template>
-                <b-dropdown-item
-                  aria-role="listitem"
-                  v-for="sort in sortOption"
-                  :key="sort"
-                  class="has-text-left"
-                >
-                  {{ sort }}
-                </b-dropdown-item>
-              </b-dropdown>
+              <Title title="Movies"></Title>
             </div>
           </div>
         </div>
       </div>
-      <div class="container" style="margin-top: -160px;">
+      <div class="container" style="margin-top: -160px">
         <div class="columns is-multiline is-mobile pb-6">
+          <div class="column is-one-fifth-desktop">
+            <h1>Filter</h1>
+          </div>
           <div
             class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
             v-for="moovie in moovies"
@@ -56,11 +40,10 @@
 </template>
 
 <script>
-import CarouselComponent from "@/components/Modules/Home/Carousel.vue";
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
 import Title from "@/components/Text/Title.vue";
 export default {
-  name: "HomeView",
+  name: "MovieView",
   data() {
     return {
       sortOption: [
@@ -146,7 +129,6 @@ export default {
     };
   },
   components: {
-    CarouselComponent,
     MoovieCard,
     Title,
   },
@@ -155,6 +137,7 @@ export default {
 
 <style>
 .discover-base {
-  background: rgba(255, 255, 255, 0.05); height: 333px;
+  background: rgba(255, 255, 255, 0.05);
+  height: 333px;
 }
 </style>

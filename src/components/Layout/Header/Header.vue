@@ -12,11 +12,16 @@
 
       <template #end>
         <b-navbar-dropdown label="CATEGORIES" class="has-text-weight-bold">
-          <b-navbar-item href="#" v-for="(category, i) in categories" :key="i" class="has-text-weight-bold">
+          <b-navbar-item
+            href="#"
+            v-for="(category, i) in categories"
+            :key="i"
+            class="has-text-weight-bold"
+          >
             {{ category }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-item class="has-text-weight-bold"> MOVIES </b-navbar-item>
+        <b-navbar-item class="has-text-weight-bold" @click="$router.push('/movies')"> MOVIES </b-navbar-item>
         <b-navbar-item class="has-text-weight-bold"> TV SHOWS </b-navbar-item>
         <b-navbar-item class="has-text-weight-bold"> LOGIN </b-navbar-item>
       </template>
