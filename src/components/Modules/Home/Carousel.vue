@@ -1,70 +1,60 @@
 <template>
-    <section>
-        <b-carousel-list
-            v-model="values"
-            :data="items"
-            :arrow="arrow"
-            :arrow-hover="arrowHover"
-            :items-to-show="perList"
-            :items-to-list="increment"
-            :repeat="repeat"
-            :has-drag="drag"
-            :has-grayscale="gray"
-            :has-opacity="opacity" />
-    </section>
+  <section>
+    <b-carousel
+      v-model="carousel"
+      :animated="animated"
+      :has-drag="drag"
+      :autoplay="autoPlay"
+      :pause-hover="pauseHover"
+      :pause-info="pauseInfo"
+      :pause-info-type="pauseType"
+      :interval="interval"
+      :repeat="repeat"
+      @change="info($event)"
+    >
+      <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
+        <section :class="`hero is-medium is-${carousel.color} is-bold`">
+          <div class="hero-body has-text-centered">
+            <h1 class="title">{{ carousel.title }}</h1>
+          </div>
+        </section>
+      </b-carousel-item>
+    </b-carousel>
+  </section>
 </template>
 
 <script>
 export default {
-    name: 'CarouselComponent',
-    data() {
-        return {
-            arrow: true,
-            arrowHover: true,
-            drag: true,
-            gray: false,
-            opacity: false,
-            values: 1,
-            perList: 4,
-            increment: 1,
-            repeat: false,
-            items: [
-                {
-                    alt: 'Slide 1',
-                    title: 'Slide 1',
-                    image: 'https://picsummm.photos/id/0/1230/500',
-                    srcFallback: 'https://picsum.photos/id/0/1230/500'
-                },
-                {
-                    title: 'Slide 2',
-                    image: 'https://picsum.photos/id/1/1230/500'
-                },
-                {
-                    title: 'Slide 3',
-                    image: 'https://picsum.photos/id/2/1230/500'
-                },
-                {
-                    title: 'Slide 4',
-                    image: 'https://picsum.photos/id/3/1230/500'
-                },
-                {
-                    title: 'Slide 5',
-                    image: 'https://picsum.photos/id/4/1230/500'
-                },
-                {
-                    title: 'Slide 6',
-                    image: 'https://picsum.photos/id/5/1230/500'
-                },
-                {
-                    title: 'Slide 7',
-                    image: 'https://picsum.photos/id/6/1230/500'
-                },
-                {
-                    title: 'Slide 8',
-                    image: 'https://picsum.photos/id/7/1230/500'
-                }
-            ]
-        }
-    }
-}
+  name: "CarouselComponent",
+  data() {
+    return {
+      carousel: 0,
+      animated: "fade",
+      drag: false,
+      autoPlay: false,
+      pauseHover: false,
+      pauseInfo: false,
+      repeat: false,
+      pauseType: "is-primary",
+      interval: 3000,
+      carousels: [
+        { title: "Slide 1", color: "dark" },
+        { title: "Slide 2", color: "primary" },
+        { title: "Slide 3", color: "info" },
+        { title: "Slide 4", color: "success" },
+        { title: "Slide 5", color: "warning" },
+        { title: "Slide 6", color: "danger" },
+      ],
+    };
+  },
+  methods: {
+    info(value) {
+      this.carousel = value;
+      this.$buefy.toast.open({
+        message: `This Slide ${value} !`,
+        type: "is-info",
+      });
+    },
+  },
+};
 </script>

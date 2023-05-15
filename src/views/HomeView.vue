@@ -1,10 +1,17 @@
 <template>
   <div class="home has-background-white">
-    <CarouselComponent></CarouselComponent>
-    <div class="container">
+    <div class="pb-5">
+      <CarouselComponent></CarouselComponent>
+    </div>
+    <div class="container pb-5">
       <div class="columns is-multiline is-mobile">
-        <div class="column is-3" v-for="moovie in moovies" :key="moovie.id">
-          <MoovieCard :id="moovie.id" :name="moovie.name" :rating="moovie.rating" :year="moovie.year"></MoovieCard>
+        <div class="column is-one-fifth-desktop is-4-tablet is-6-mobile" v-for="moovie in moovies" :key="moovie.id">
+          <MoovieCard
+            :id="moovie.id"
+            :name="moovie.name"
+            :rating="moovie.rating"
+            :year="moovie.year"
+          ></MoovieCard>
         </div>
       </div>
     </div>
@@ -28,7 +35,9 @@ export default {
         { id: 5, name: "Below Zero", year: "2021", rating: "8.0" },
         { id: 3, name: "The little things", year: "2022", rating: "9.0" },
         { id: 4, name: "Outside the wine", year: "2023", rating: "7.0" },
-        { id: 8, name: "Wonder Women 1984", year: "2020", rating: "9.0" }
+        { id: 8, name: "Wonder Women 1984", year: "2020", rating: "9.0" },
+        { id: 9, name: "The little things", year: "2019", rating: "8.2" },
+        { id: 10, name: "Outside the wine", year: "2018", rating: "7.5" },
       ],
     };
   },

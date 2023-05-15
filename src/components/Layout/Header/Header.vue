@@ -1,6 +1,6 @@
 <template>
   <div class="has-background-dark">
-    <b-navbar centered type="is-dark">
+    <b-navbar centered type="is-dark" transparent>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img src="@/assets/MoovieTime-Logo.png" alt="MoovieTime | Perqara" />
