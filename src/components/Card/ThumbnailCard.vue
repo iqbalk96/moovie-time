@@ -21,7 +21,7 @@
             <span>{{ rating }}</span>
           </div>
           <h3>Action</h3>
-          <b-button type="is-danger" size="is-small" rounded @click="$router.push('/about')">View</b-button>
+          <b-button type="is-danger" size="is-small" rounded @click="$router.push('/movie-detail')">View</b-button>
         </div>
       </div>
     </div>

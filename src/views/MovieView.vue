@@ -1,37 +1,36 @@
 <template>
   <div class="movies">
-    <div>
-      <!-- <CarouselComponent></CarouselComponent> -->
-    </div>
-    <div>
-      <div
-        class="is-flex is-align-items-center is-justify-content-center discover-base"
-      >
-        <div class="container" style="margin-top: -80px">
-          <div class="columns mb-6">
-            <div class="column pt-5">
-              <Title title="Movies"></Title>
-            </div>
+    <div
+      class="is-flex is-align-items-center is-justify-content-center discover-base"
+    >
+      <div class="container" style="margin-top: -80px">
+        <div class="columns mb-6">
+          <div class="column pt-5">
+            <Title title="Movies"></Title>
           </div>
         </div>
       </div>
-      <div class="container" style="margin-top: -160px">
-        <div class="columns is-multiline is-mobile pb-6">
-          <div class="column is-one-fifth-desktop">
-            <h1>Filter</h1>
-          </div>
-          <div
-            class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
-            v-for="moovie in moovies"
-            :key="moovie.id"
-          >
-            <MoovieCard
-              :id="moovie.id"
-              :name="moovie.name"
-              :rating="moovie.rating"
-              :year="moovie.year"
-              :thumbnail="moovie.thumbnail"
-            ></MoovieCard>
+    </div>
+    <div class="container" style="margin-top: -160px">
+      <div class="columns is-mobile pb-6">
+        <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
+          <SortingComponent></SortingComponent>
+        </div>
+        <div class="column ">
+          <div class="columns is-multiline is-mobile is-3-desktop is-6-tablet">
+            <div
+              class="column is-3-desktop"
+              v-for="moovie in moovies"
+              :key="moovie.id"
+            >
+              <MoovieCard
+                :id="moovie.id"
+                :name="moovie.name"
+                :rating="moovie.rating"
+                :year="moovie.year"
+                :thumbnail="moovie.thumbnail"
+              ></MoovieCard>
+            </div>
           </div>
         </div>
       </div>
@@ -41,19 +40,12 @@
 
 <script>
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
+import SortingComponent from "@/components/Filter/Sorting.vue";
 import Title from "@/components/Text/Title.vue";
 export default {
   name: "MovieView",
   data() {
     return {
-      sortOption: [
-        "Popularity Ascending",
-        "Popularity Descending",
-        "Release Date Ascending",
-        "Release Date Descending",
-        "Rating Ascending",
-        "Rating Descending",
-      ],
       moovies: [
         {
           id: 1,
@@ -125,12 +117,27 @@ export default {
           rating: "7.5",
           thumbnail: "the-croods.png",
         },
+        {
+          id: 11,
+          name: "The Little Things",
+          year: "2018",
+          rating: "7.5",
+          thumbnail: "the-litle-things.png",
+        },
+        {
+          id: 12,
+          name: "Breach",
+          year: "2018",
+          rating: "7.5",
+          thumbnail: "breach.png",
+        },
       ],
     };
   },
   components: {
     MoovieCard,
     Title,
+    SortingComponent
   },
 };
 </script>

@@ -35,7 +35,7 @@ export default {
       name: "",
       selected: null,
       keepFirst: false,
-      openOnFocus: false,
+      openOnFocus: true,
       selectable: false,
     };
   },
