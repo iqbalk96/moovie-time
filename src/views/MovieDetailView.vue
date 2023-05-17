@@ -1,7 +1,7 @@
 <template>
   <div class="movie-detail">
     <HeroDetailComponent :thumbnail="$route.params.thumbnail"></HeroDetailComponent>
-    <div class="container">
+    <div class="container" style="margin-top: 20rem;">
       <div class="columns is-multiline is-mobile pb-6">
         <div
           class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
