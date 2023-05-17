@@ -1,8 +1,13 @@
 <template>
-  <section>
+  <section class="review">
+    <div class="columns">
+        <div class="column">
+            <h1 class="pt-5 has-text-danger has-text-weight-bold">REVIEWS</h1>
+        </div>
+    </div>
     <div class="columns">
       <div class="column is-half-desktop is-full-mobile is-multiline" v-for="review in reviews" :key="review.name">
-        <div class="card">
+        <div class="card card-review-bg">
           <div class="card-content">
             <div class="media">
               <div class="media-left">
@@ -20,7 +25,7 @@
               </div>
             </div>
 
-            <div class="content">
+            <div class="content is-italic">
               {{ review.testimoni }}
             </div>
           </div>
@@ -43,3 +48,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.review .card-review-bg {
+    background: #F9F9F9;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+</style>

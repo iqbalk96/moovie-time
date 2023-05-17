@@ -9,10 +9,8 @@
           class="column is-one-fifth-desktop is-4-tablet is-full-mobile"
         ></div>
         <div class="column is-half-desktop is-full-mobile">
-          <div style="margin-top: -3rem;">
-            <h1 class="has-text-danger has-text-weight-bold">
-              OVERVIEW
-            </h1>
+          <div style="margin-top: -3rem">
+            <h1 class="has-text-danger has-text-weight-bold">OVERVIEW</h1>
             <p>
               Wonder Woman comes into conflict with the Soviet Union during the
               Cold War in the 1980s and finds a formidable foe by the name of
@@ -22,23 +20,36 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column">
-          <ReviewComponent></ReviewComponent>
+        <div class="column pb-6">
+          <div class="pb-6">
+            <ReviewComponent></ReviewComponent>
+          </div>
         </div>
       </div>
-      <div class="columns is-multiline is-mobile pb-6">
-        <div
-          class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
-          v-for="moovie in moovies"
-          :key="moovie.id"
-        >
-          <MoovieCard
-            :id="moovie.id"
-            :name="moovie.name"
-            :rating="moovie.rating"
-            :year="moovie.year"
-            :thumbnail="moovie.thumbnail"
-          ></MoovieCard>
+    </div>
+    <div class="has-background-dark">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <h1 class="has-text-white has-text-weight-bold pt-6 pb-3">
+              RECOMENDATION MOVIES
+            </h1>
+          </div>
+        </div>
+        <div class="columns is-multiline is-mobile pb-6">
+          <div
+            class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
+            v-for="moovie in moovies"
+            :key="moovie.id"
+          >
+            <MoovieCard
+              :id="moovie.id"
+              :name="moovie.name"
+              :rating="moovie.rating"
+              :year="moovie.year"
+              :thumbnail="moovie.thumbnail"
+            ></MoovieCard>
+          </div>
         </div>
       </div>
     </div>
@@ -95,7 +106,7 @@ export default {
   components: {
     MoovieCard,
     HeroDetailComponent,
-    ReviewComponent
+    ReviewComponent,
   },
 };
 </script>
