@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="container" style="margin-top: -160px;">
-        <div class="columns is-multiline is-mobile pb-6">
+        <div class="columns is-multiline is-mobile pb-6" v-if="!loading">
           <div
             class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
             v-for="moovie in movies"
@@ -48,6 +48,21 @@
               :year="moovie.release_date"
               :thumbnail="moovie.backdrop_path"
               :overview="moovie.overview"
+            ></MoovieCard>
+          </div>
+        </div>
+        <div class="columns is-multiline is-mobile pb-6" v-else>
+          <div
+            class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
+            v-for="i in 10" :key="i"
+          >
+            <MoovieCard
+              :id="i"
+              name=""
+              rating="-"
+              year=""
+              thumbnail=""
+              overview=""
             ></MoovieCard>
           </div>
         </div>
@@ -83,6 +98,7 @@ export default {
   computed: {
     ...mapGetters({
       movies: 'movie/getAllMovies',
+      loading: "movie/getLoadingMovie",
     }),
   },
   methods: {
@@ -90,7 +106,9 @@ export default {
       "GET_ALL_MOVIES",
     ]),
     initData () {
-      this.GET_ALL_MOVIES()
+      if (this.movies.length === 0) {
+        this.GET_ALL_MOVIES()
+      }
     }
   },
   components: {

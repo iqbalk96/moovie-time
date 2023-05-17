@@ -34,7 +34,7 @@
             </h1>
           </div>
         </div>
-        <div class="columns is-multiline is-mobile pb-6">
+        <div v-if="!loading" class="columns is-multiline is-mobile pb-6">
           <div
             class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
             v-for="moovie in filteredMovies"
@@ -50,6 +50,21 @@
             ></MoovieCard>
           </div>
         </div>
+        <div v-else class="columns is-multiline is-mobile pb-6">
+          <div
+            class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
+            v-for="i in 10" :key="i"
+          >
+            <MoovieCard
+              :id="i"
+              name=""
+              rating="-"
+              year=""
+              thumbnail=""
+              overview=""
+            ></MoovieCard>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +74,7 @@
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
 import HeroDetailComponent from "@/components/Modules/Detail/Hero.vue";
 import ReviewComponent from "@/components/Modules/Detail/Review.vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MovieDetailView",
   data() {
@@ -68,10 +83,24 @@ export default {
   computed: {
     ...mapGetters({
       movies: "movie/getAllMovies",
+      loading: "movie/getLoadingMovie",
     }),
     filteredMovies: function () {
       return this.movies.slice(0, 5);
     },
+  },
+  mounted() {
+    this.initData()
+  },
+  methods: {
+    ...mapActions("movie", [
+      "GET_ALL_MOVIES",
+    ]),
+    initData () {
+      if (this.movies.length === 0) {
+        this.GET_ALL_MOVIES()
+      }
+    }
   },
   components: {
     MoovieCard,

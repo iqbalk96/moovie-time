@@ -22,7 +22,7 @@
           <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
             <img
               :src="`${imagePath}${$route.params.thumbnail}`"
-              :alt="name"
+              :alt="$route.params.name"
               class="card-moovie"
             />
           </div>

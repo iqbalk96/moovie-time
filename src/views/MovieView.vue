@@ -16,8 +16,8 @@
         <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
           <SortingComponent></SortingComponent>
         </div>
-        <div class="column ">
-          <div class="columns is-multiline is-mobile is-3-desktop is-6-tablet">
+        <div class="column">
+          <div v-if="!loading" class="columns is-multiline is-mobile is-3-desktop is-6-tablet">
             <div
               class="column is-3-desktop"
               v-for="moovie in movies"
@@ -33,6 +33,21 @@
               ></MoovieCard>
             </div>
           </div>
+          <div v-else class="columns is-multiline is-mobile is-3-desktop is-6-tablet">
+            <div
+              class="column is-3-desktop"
+              v-for="i in 10" :key="i"
+            >
+              <MoovieCard
+                :id="i"
+                name=""
+                rating="-"
+                year=""
+                thumbnail=""
+                overview=""
+              ></MoovieCard>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +55,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
 import SortingComponent from "@/components/Filter/Sorting.vue";
 import Title from "@/components/Text/Title.vue";
@@ -48,92 +63,7 @@ export default {
   name: "MovieView",
   data() {
     return {
-      moovies: [
-        {
-          id: 1,
-          name: "Wonder Women 1984",
-          year: "2020",
-          rating: "7.0",
-          thumbnail: "below-zero.png",
-        },
-        {
-          id: 2,
-          name: "Below Zero",
-          year: "2021",
-          rating: "8.0",
-          thumbnail: "black-water-abyss.png",
-        },
-        {
-          id: 3,
-          name: "The little things",
-          year: "2022",
-          rating: "9.0",
-          thumbnail: "breach.png",
-        },
-        {
-          id: 4,
-          name: "Outside the wine",
-          year: "2020",
-          rating: "8.0",
-          thumbnail: "hobs-and-shaw.png",
-        },
-        {
-          id: 5,
-          name: "Below Zero",
-          year: "2021",
-          rating: "8.0",
-          thumbnail: "outside-the-war.png",
-        },
-        {
-          id: 6,
-          name: "The little things",
-          year: "2022",
-          rating: "9.0",
-          thumbnail: "project-owner.png",
-        },
-        {
-          id: 7,
-          name: "Outside the wine",
-          year: "2023",
-          rating: "7.0",
-          thumbnail: "soul.png",
-        },
-        {
-          id: 8,
-          name: "Wonder Women 1984",
-          year: "2020",
-          rating: "9.0",
-          thumbnail: "space-sweeper.png",
-        },
-        {
-          id: 9,
-          name: "The little things",
-          year: "2019",
-          rating: "8.2",
-          thumbnail: "tenet.png",
-        },
-        {
-          id: 10,
-          name: "Outside the wine",
-          year: "2018",
-          rating: "7.5",
-          thumbnail: "the-croods.png",
-        },
-        {
-          id: 11,
-          name: "The Little Things",
-          year: "2018",
-          rating: "7.5",
-          thumbnail: "the-litle-things.png",
-        },
-        {
-          id: 12,
-          name: "Breach",
-          year: "2018",
-          rating: "7.5",
-          thumbnail: "breach.png",
-        },
-      ],
+
     };
   },
   components: {
@@ -141,10 +71,24 @@ export default {
     Title,
     SortingComponent
   },
+  mounted() {
+    this.initData()
+  },
   computed: {
     ...mapGetters({
       movies: 'movie/getAllMovies',
+      loading: "movie/getLoadingMovie"
     }),
+  },
+  methods: {
+    ...mapActions("movie", [
+      "GET_ALL_MOVIES",
+    ]),
+    initData () {
+      if (this.movies.length === 0) {
+        this.GET_ALL_MOVIES()
+      }
+    }
   },
 };
 </script>

@@ -5,11 +5,12 @@
         <span class="point">{{ rating }}</span>
       </b-tag>
       <img
+        v-if="!loading"
         :src="`${imagePath}${thumbnail}`"
         :alt="name"
         class="card-moovie"
       />
-
+      <b-skeleton v-else height="330px"></b-skeleton>
       <div class="card__overlay">
         <div class="overlay__text">
           <div class="pt-4">
@@ -21,17 +22,37 @@
             <span>{{ rating }}</span>
           </div>
           <h3>Action</h3>
-          <b-button type="is-danger" size="is-small" rounded @click="$router.push({ name: 'movie-detail', params: { name, year, rating, thumbnail, overview }})">View</b-button>
+          <b-button
+            v-if="!loading"
+            type="is-danger"
+            size="is-small"
+            rounded
+            @click="
+              $router.push({
+                name: 'movie-detail',
+                params: { name, year, rating, thumbnail, overview },
+              })
+            "
+            >View</b-button
+          >
         </div>
       </div>
     </div>
-    <h5 class="thumbnail-title">{{ name }}</h5>
-    <p class="thumbnail-year">{{ year }}</p>
+    <div v-if="!loading">
+      <h5 class="thumbnail-title">{{ name }}</h5>
+      <p class="thumbnail-year">{{ year }}</p>
+    </div>
+    <div v-else>
+      <b-skeleton height="10px"></b-skeleton>
+      <b-skeleton height="10px"></b-skeleton>
+    </div>
   </div>
 </template>
 
 <script>
-import { imagePath } from '@/utils/config';
+import { imagePath } from "@/utils/config";
+import { mapGetters } from "vuex";
+
 export default {
   name: "ThumbnailCardComponent",
   data() {
@@ -39,6 +60,11 @@ export default {
       imagePath,
       rounded: false,
     };
+  },
+  computed: {
+    ...mapGetters({
+      loading: "movie/getLoadingMovie",
+    }),
   },
   props: {
     name: {
@@ -54,8 +80,8 @@ export default {
       default: "",
     },
     overview: {
-      default: ""
-    }
+      default: "",
+    },
   },
 };
 </script>
