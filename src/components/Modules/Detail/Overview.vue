@@ -21,7 +21,7 @@
         <div class="columns">
           <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
             <img
-              :src="require(`@/assets/movie/${$route.params.thumbnail}`)"
+              :src="`${imagePath}${$route.params.thumbnail}`"
               :alt="name"
               class="card-moovie"
             />
@@ -85,8 +85,14 @@
 </template>
 
 <script>
+import { imagePath } from '@/utils/config';
 export default {
   name: "OverviewComponent",
+  data(){
+    return {
+      imagePath
+    }
+  }
 };
 </script>
 

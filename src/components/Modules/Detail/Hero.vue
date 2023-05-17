@@ -1,7 +1,7 @@
 <template>
   <section class="hero is-medium is-relative">
     <img
-      :src="require(`@/assets/movie/${thumbnail}`)"
+      :src="`${imagePath}${thumbnail}`"
       :alt="`bg hero ${thumbnail}`"
       class="bg-hero"
     />
@@ -11,8 +11,14 @@
 
 <script>
 import Overview from './Overview.vue';
+import { imagePath } from '@/utils/config';
 export default {
   name: "HeroDetailComponent",
+  data(){
+    return {
+      imagePath
+    }
+  },
   components: {
     Overview
   },

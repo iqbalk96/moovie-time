@@ -5,7 +5,7 @@
         <span class="point">{{ rating }}</span>
       </b-tag>
       <img
-        :src="require(`@/assets/movie/${thumbnail}`)"
+        :src="`${imagePath}${thumbnail}`"
         :alt="name"
         class="card-moovie"
       />
@@ -21,7 +21,7 @@
             <span>{{ rating }}</span>
           </div>
           <h3>Action</h3>
-          <b-button type="is-danger" size="is-small" rounded @click="$router.push({ name: 'movie-detail', params: { name, year, rating, thumbnail }})">View</b-button>
+          <b-button type="is-danger" size="is-small" rounded @click="$router.push({ name: 'movie-detail', params: { name, year, rating, thumbnail, overview }})">View</b-button>
         </div>
       </div>
     </div>
@@ -31,10 +31,12 @@
 </template>
 
 <script>
+import { imagePath } from '@/utils/config';
 export default {
   name: "ThumbnailCardComponent",
   data() {
     return {
+      imagePath,
       rounded: false,
     };
   },
@@ -51,6 +53,9 @@ export default {
     thumbnail: {
       default: "",
     },
+    overview: {
+      default: ""
+    }
   },
 };
 </script>

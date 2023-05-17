@@ -20,15 +20,16 @@
           <div class="columns is-multiline is-mobile is-3-desktop is-6-tablet">
             <div
               class="column is-3-desktop"
-              v-for="moovie in moovies"
+              v-for="moovie in movies"
               :key="moovie.id"
             >
               <MoovieCard
                 :id="moovie.id"
-                :name="moovie.name"
-                :rating="moovie.rating"
-                :year="moovie.year"
-                :thumbnail="moovie.thumbnail"
+                :name="moovie.title"
+                :rating="moovie.vote_average"
+                :year="moovie.release_date"
+                :thumbnail="moovie.backdrop_path"
+                :overview="moovie.overview"
               ></MoovieCard>
             </div>
           </div>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
 import SortingComponent from "@/components/Filter/Sorting.vue";
 import Title from "@/components/Text/Title.vue";
@@ -138,6 +140,11 @@ export default {
     MoovieCard,
     Title,
     SortingComponent
+  },
+  computed: {
+    ...mapGetters({
+      movies: 'movie/getAllMovies',
+    }),
   },
 };
 </script>
