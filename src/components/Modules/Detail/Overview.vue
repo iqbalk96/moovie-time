@@ -1,11 +1,27 @@
 <template>
   <section class="overview">
+    <div class="container">
+      <div class="columns overview-base">
+        <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile"></div>
+        <div class="column">
+          <p class="has-text-white overview-year">
+            {{ $route.params.year }}
+          </p>
+          <h1 class="has-text-white overview-hero-title">
+            {{ $route.params.name }}
+          </h1>
+          <p class="has-text-white overview-hero-genre">
+            Fantasy, Action, Adventure
+          </p>
+        </div>
+      </div>
+    </div>
     <div class="detail">
       <div class="container">
         <div class="columns">
           <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
             <img
-              :src="require(`@/assets/movie/${thumbnail}`)"
+              :src="require(`@/assets/movie/${$route.params.thumbnail}`)"
               :alt="name"
               class="card-moovie"
             />
@@ -20,9 +36,7 @@
                       width="30"
                       alt="star rating detail"
                     />
-                    <h1 class="overview-rating ml-2" style="margin-top: -7px">
-                      7.0
-                    </h1>
+                    <h1 class="overview-rating ml-2">{{ $route.params.rating }}</h1>
                   </div>
                   <div>
                     <div class="overview-title">USER SCORE</div>
@@ -30,42 +44,38 @@
                   </div>
                 </div>
               </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center">
+              <div
+                class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center"
+              >
                 <div>
                   <p class="overview-title">STATUS</p>
                   <p class="overview-value">RELEASE</p>
                 </div>
               </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center">
+              <div
+                class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center"
+              >
                 <div>
                   <p class="overview-title">LANGUAGE</p>
-                <p class="overview-value">ENGLISH</p>
+                  <p class="overview-value">ENGLISH</p>
                 </div>
               </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center">
+              <div
+                class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center"
+              >
                 <div>
                   <p class="overview-title">BUDGET</p>
-                <p class="overview-value">$200.000.000,00</p>
+                  <p class="overview-value">$200.000.000,00</p>
                 </div>
               </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center">
+              <div
+                class="column is-one-fifth-desktop is-12-tablet is-6-mobile is-flex is-justify-content-center"
+              >
                 <div>
                   <p class="overview-title">PRODUCTION</p>
-                <p class="overview-value">DC ENTERTAINMENT</p>
+                  <p class="overview-value">DC ENTERTAINMENT</p>
                 </div>
               </div>
-              <!-- <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
-                <p class="overview-title">LANGUAGE</p>
-                <p class="overview-value">ENGLISH</p>
-              </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
-                <p class="overview-title">BUDGET</p>
-                <p class="overview-value">$200.000.000,00</p>
-              </div>
-              <div class="column is-one-fifth-desktop is-12-tablet is-6-mobile">
-                <p class="overview-title">PRODUCTION</p>
-                <p class="overview-value">DC ENTERTAINMENT</p>
-              </div> -->
             </div>
           </div>
         </div>
@@ -77,11 +87,6 @@
 <script>
 export default {
   name: "OverviewComponent",
-  props: {
-    thumbnail: {
-      default: "",
-    },
-  },
 };
 </script>
 
@@ -96,12 +101,12 @@ export default {
 }
 
 .overview .card-moovie {
-  height: 330px;
+  height: 350px;
   border-radius: 0px;
   width: 250px;
   object-fit: cover;
   position: absolute;
-  bottom: -100px;
+  bottom: -118px;
 }
 
 .overview .overview-title {
@@ -123,5 +128,28 @@ export default {
   font-size: 36px;
   line-height: 44px;
   color: #e5e5e5;
+  margin-top: -7px;
+}
+
+.overview .overview-year {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.overview .overview-hero-title {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.overview .overview-hero-genre {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.overview .overview-base {
+  margin-top: -230px
 }
 </style>

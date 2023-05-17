@@ -1,7 +1,31 @@
 <template>
-  <div class="movie-detail">
-    <HeroDetailComponent :thumbnail="$route.params.thumbnail"></HeroDetailComponent>
-    <div class="container" style="margin-top: 20rem;">
+  <div class="movie-detail has-background-white">
+    <HeroDetailComponent
+      :thumbnail="$route.params.thumbnail"
+    ></HeroDetailComponent>
+    <div class="container" style="margin-top: 5rem">
+      <div class="columns">
+        <div
+          class="column is-one-fifth-desktop is-4-tablet is-full-mobile"
+        ></div>
+        <div class="column is-half-desktop is-full-mobile">
+          <div style="margin-top: -3rem;">
+            <h1 class="has-text-danger has-text-weight-bold">
+              OVERVIEW
+            </h1>
+            <p>
+              Wonder Woman comes into conflict with the Soviet Union during the
+              Cold War in the 1980s and finds a formidable foe by the name of
+              the Cheetah.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <ReviewComponent></ReviewComponent>
+        </div>
+      </div>
       <div class="columns is-multiline is-mobile pb-6">
         <div
           class="column is-one-fifth-desktop is-4-tablet is-6-mobile"
@@ -24,6 +48,7 @@
 <script>
 import MoovieCard from "@/components/Card/ThumbnailCard.vue";
 import HeroDetailComponent from "@/components/Modules/Detail/Hero.vue";
+import ReviewComponent from "@/components/Modules/Detail/Review.vue";
 export default {
   name: "MovieDetailView",
   data() {
@@ -63,13 +88,14 @@ export default {
           year: "2021",
           rating: "8.0",
           thumbnail: "outside-the-war.png",
-        }
+        },
       ],
     };
   },
   components: {
     MoovieCard,
-    HeroDetailComponent
-  }
+    HeroDetailComponent,
+    ReviewComponent
+  },
 };
 </script>
